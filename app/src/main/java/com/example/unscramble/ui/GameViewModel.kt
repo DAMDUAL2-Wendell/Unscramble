@@ -35,8 +35,15 @@ class GameViewModel: ViewModel(){
 
     private fun pickRandomWordAndShuffle(): String {
         currentWord = allWords.random()
-        return shuffleCurrentWord(currentWord)
+        if(usedWords.contains(currentWord)){
+            return pickRandomWordAndShuffle()
+        }else{
+            usedWords.add(currentWord)
+            return shuffleCurrentWord(currentWord)
+        }
     }
+
+
 
 
 }
